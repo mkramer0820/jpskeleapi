@@ -1,0 +1,28 @@
+{% extends 'index.html' %}
+
+{% block content %}
+    <h1>TASKS:</h1>
+
+    <a href="{{ task_list.order.get_absolute_url }}"> {{ task_list.order.buyer.name }}</a>
+
+    <table>
+        <h2>{{ open_tasks.type }}</h2>
+        
+                   </table>
+
+                    <table class="table">
+                       <tr><td>Task Created On: </td><td>{{ open_tasks.created }}</td></tr>
+                       <tr><td>Task Due Date</td><td>{{ open_tasks.due_date }}</td></tr>
+                       <tr><td>Task Note</td><td>{{ open_tasks.ndue_date_note }}</td></tr>
+                        <tr><td>Factory T&A Due Date</td><td>{{ open_tasks.factory_TA }}</td></tr>
+                       <tr><td>Factory T&A Notes </td><td>{{ open_tasks.nfactory_ta }}</td></tr>
+                       <tr><td>Date Sent to JP </td><td>{{ open_tasks.date_sent_to_jp }}</td></tr>
+                        <tr><td> Notes - From sent to JP</td><td>{{ open_tasks.ndate_sent_to_jp }}</td></tr>
+                        <tr><td> Buyer Approval Date </td><td>{{ open_tasks.buyer_approval_date }}</td></tr>
+                         <tr><td> Order Status Note </td><td>{{ open_tasks.buyer_approval_status }}</td></tr>
+                       <tr><td> Status</td><td>{{ open_tasks.status }}</td></tr>
+
+                    </table>
+        
+
+{% endblock %}

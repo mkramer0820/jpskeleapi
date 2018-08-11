@@ -1,0 +1,26 @@
+{% extends 'index.html' %}
+
+
+{% block content %}
+     <a class="btn btn-primary" href="{% url 'task:add_task' %}" role="button">Add New Order Related Task</a>
+
+    <h1>Orders Tasks:</h1>
+    
+
+        {% for task in task_list %}
+        
+<h3><a href="{{ task.get_absolute_url }}">Buyer Style Number:  {{ task.order.buyer_style_number }}</a><h3> Status: {{task.status}}</h3>
+    <p><a href="{{ task.get_update_url }}">Update Task for {{ task.order.buyer_style_number }}</a></p>
+
+
+           </table>
+
+                    <table class="table">
+                        <tr><td>Task Type: </td><td>{{ task.type }}</td> <td>Task Created On: </td><td>{{ task.created }}</td></tr>
+                        <tr><td>Task Due Date</td><td>{{ task.due_date }}</td><td>Task Note</td><td>{{ task.ndue_date_note }}</td></tr>
+                    </table>
+
+        {% endfor %}
+
+
+{% endblock %}

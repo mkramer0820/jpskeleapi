@@ -1,0 +1,19 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+  <h1>
+    Welcome to {{ title }}!
+  </h1>
+
+<h2>JEANNE PIERRE: </h2>
+
+<a [routerLink]="'/customer'"> Customers </a>
+<a [routerLink]="'/create-customer'"> Create Customer </a>
+<a [routerLink]="'/factories'"> Factories </a>
+<a [routerLink]="'/create-factory'"> Create Factory </a>
+<a [routerLink]="'/orders'"> Orders </a>
+<a [routerLink]="'/create-order'"> Create Order </a>
+<a [routerLink]="'/tasks'"> Tasks </a>
+<a [routerLink]="'/create-task'"> Create Task </a>
+<div>
+<router-outlet></router-outlet>
+</div>
