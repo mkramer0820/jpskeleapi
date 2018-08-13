@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA  } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { CustomerListComponent } from './customer-list/customer-list.component';
@@ -14,6 +14,13 @@ import { TaskCreateComponent } from './task-create/task-create.component';
 import { AppRoutingModule } from './app-routing.module';
 
 import { HttpClientModule , HttpClientXsrfModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LayoutModule } from '@angular/cdk/layout';
+import { MyNavComponent } from './my-nav/my-nav.component';
+import {
+  MatToolbarModule, MatButtonModule, MatSidenavModule,
+   MatIconModule, MatListModule } from '@angular/material';
+
 
 
 
@@ -30,16 +37,25 @@ import { HttpClientModule , HttpClientXsrfModule } from '@angular/common/http';
     OrderCreateComponent,
     TaskListComponent,
     TaskCreateComponent,
+    MyNavComponent,
 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    BrowserAnimationsModule,
     HttpClientModule,
     HttpClientXsrfModule.withOptions({
       cookieName : 'csrftoken',
       headerName : 'X-CSRFToken'
-    })
+    }),
+    LayoutModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

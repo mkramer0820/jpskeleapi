@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { APIService } from '../api.service';
+import { APIService } from '../_services';
 
 @Component({
 
@@ -34,6 +34,5 @@ export class CustomerCreateComponent implements OnInit {
         this.apiService.createCustomer(customer).subscribe((response) => {
           console.log(response);
      });
-  };
+  }
 }
-

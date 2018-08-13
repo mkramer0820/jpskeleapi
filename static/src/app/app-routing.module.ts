@@ -9,11 +9,15 @@ import { OrderListComponent } from './order-list/order-list.component';
 import { OrderCreateComponent } from './order-create/order-create.component';
 import { TaskListComponent } from './task-list/task-list.component';
 import { TaskCreateComponent } from './task-create/task-create.component';
+import { MyNavComponent } from './my-nav/my-nav.component';
 
 
 const routes: Routes = [
 
-  { path: '', redirectTo: 'customer', pathMatch: 'full' },
+  { path: '', redirectTo: '/', pathMatch: 'full' },
+  { path: '' ,
+    component: MyNavComponent
+  }
   {
     path: 'customer',
     component: CustomerListComponent

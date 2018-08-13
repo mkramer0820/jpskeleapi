@@ -27,4 +27,7 @@ export class APIService {
   getOrders(){
     return this.httpClient.get(`${this.API_URL}/orders/`)
   }
+  getTasks(){
+    return this.httpClient.get(`${this.API_URL}/task/`)
+  }
 }
