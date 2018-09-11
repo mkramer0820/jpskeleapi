@@ -41,6 +41,11 @@ class Customer(models.Model):
 
         return reverse('customer:customer_list', kwargs={'pk': self.pk})
 
+    def get_customer_names(self):
+        customers = Customer.objects.all()
+        names = customers.values()
+        return names
+
 
 
 

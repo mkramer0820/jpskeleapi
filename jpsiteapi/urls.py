@@ -20,7 +20,7 @@ from django.conf.urls.static import static
 from django.views.static import serve
 
 from customer.views import CustomerCreateView, CustomerDetailView
-from orders.views import OrderCreateView, OrderDetailView
+from orders.views import OrderCreateView, OrderDetailView, OrderCreateNamesView, OrderFileView
 from task.views import TaskCreateView, TaskDetailView
 from factory.views import FactoryCreateView, FactoryDetailView
 
@@ -55,18 +55,29 @@ urlpatterns = [
     path('factory/<int:pk>/',
          FactoryDetailView.as_view(),
          name='factory-detail'),
+
     path('customer/',
          CustomerCreateView.as_view(),
          name='customer-list'),
     path('customer/<int:pk>/',
          CustomerDetailView.as_view(),
          name='customer-detail'),
+
+
+    path('orders/names/',
+         OrderCreateNamesView.as_view(),
+         name='order-names',),
     path('orders/',
          OrderCreateView.as_view(),
          name='order-list'),
     path('orders/<int:pk>',
          OrderDetailView.as_view(),
          name='order-detail'),
+    path('orders/imgupload/',
+         OrderFileView.as_view(),
+         name='order-image'),
+
+
     path('task/',
          TaskCreateView.as_view(),
          name='task-list'),
