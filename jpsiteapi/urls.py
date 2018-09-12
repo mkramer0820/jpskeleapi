@@ -23,6 +23,8 @@ from customer.views import CustomerCreateView, CustomerDetailView
 from orders.views import OrderCreateView, OrderDetailView, OrderCreateNamesView, OrderFileView
 from task.views import TaskCreateView, TaskDetailView
 from factory.views import FactoryCreateView, FactoryDetailView
+from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token, verify_jwt_token
+
 
 
 from .settings import MEDIA_URL, MEDIA_ROOT
@@ -48,6 +50,9 @@ urlpatterns = [
         include('home.urls',
                 namespace='home')),
 
+    url(r'^api-token-auth/', obtain_jwt_token),
+    url(r'^api-token-refresh/', refresh_jwt_token),
+    url(r'^api-token-verify/', verify_jwt_token),
 
     path('factory/',
          FactoryCreateView.as_view(),
