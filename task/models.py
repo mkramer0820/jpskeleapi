@@ -3,6 +3,7 @@ from django.utils.text import slugify
 from django.urls import reverse
 # Create your models here.
 from orders.models import Orders
+from django.contrib.postgres.fields import JSONField
 
 note = models.CharField(blank=True, max_length=100)
 date_field = models.DateField(blank=True)
@@ -16,16 +17,20 @@ class TaskType(models.Model):
         return self.type
 
 
-class StandardTaskList(models.Model):
+class TaskName(models.Model):
+    type = models.CharField(max_length=75, blank=True)
+
+    def __str__(self):
+        return self.type
+
+class CostcoSampleTaskAbstract(models.Model):
 
     type = models.ForeignKey('TaskType', on_delete='CASCADE')
     created = models.DateTimeField(verbose_name='Create On', auto_now=True)
     due_date = models.DateField(null=True,blank=True)
-    due_date_note = models.CharField(blank=True, max_length=100)
-    factory_ta = models.DateField(null=True,blank=True)
-    factory_ta_note = models.CharField(blank=True, max_length=100)
-    date_sent_to_jp = models.DateField(null=True, blank=True)
-    date_sent_to_jp_note = models.CharField(blank=True, max_length=100)
+    due_date_factory_ta = models.DateField(null=True,blank=True)
+    jp_approval_sent_to_buyer = models.DateField(null=True, blank=True)
+
     buyer_approval_date = models.DateField(null=True, blank=True)
     status = models.CharField(choices=(('In progress', 'in_progress'),
                                        ('Completed', 'completed'),
@@ -41,9 +46,10 @@ class StandardTaskList(models.Model):
         abstract = True
 
 
-class SampleTaskBasic(StandardTaskList):
+class CostcoSampleTasks(CostcoSampleTaskAbstract):
 
     order = models.ForeignKey(Orders, blank=True, on_delete='CASCADE')
+    name = models.OneToOneField(TaskName, on_delete='CASCADE')
     slug = models.SlugField(max_length=50, null=True, blank=True)
 
     def __str__(self):
@@ -67,3 +73,17 @@ class SampleTaskBasic(StandardTaskList):
     def style_number(self):
 
         return "%s" % (self.order.buyer_style_number)
+
+def defualtTaskAttribute():
+
+    return {'task_name': '', 'task_due_date': '', 'task_note':''}
+
+
+class Task(models.Model):
+
+    task_name = models.CharField
+    task_data = JSONField(default=defualtTaskAttribute())
+    task_order = models.ForeignKey(Orders, on_delete='CASCADE')
+
+    def __str__(self):
+        return self.task_name

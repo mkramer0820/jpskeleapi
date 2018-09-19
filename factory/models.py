@@ -9,7 +9,7 @@ class FactoryContact(models.Model):
 
     first_name = models.CharField('Contact First Name', max_length=30, blank=True)
     last_name = models.CharField('Contact Last Name', 'contact_last_name', max_length=30, blank=True)
-    phone = models.IntegerField('Phone Number', 'contact_phone_number', blank=True)
+    phone = models.CharField('Phone Number', 'contact_phone_number', blank=True, max_length=30)
     email = models.EmailField('Contact Email', 'contact_email', max_length=30, blank=True)
     slug = models.SlugField("Slug", blank=True, help_text="Slug Field")
 

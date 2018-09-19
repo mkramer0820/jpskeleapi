@@ -2,15 +2,15 @@ from rest_framework import generics
 from .serializers import TaskModelSerializer, SerializerMethodField
 
 
-from task.models import SampleTaskBasic
+from task.models import CostcoSampleTasks
 
 class TaskCreateView(generics.ListCreateAPIView):
 
-    queryset = SampleTaskBasic.objects.all()
+    queryset = CostcoSampleTasks.objects.all()
     serializer_class = TaskModelSerializer
 
 
 class TaskDetailView(generics.RetrieveUpdateDestroyAPIView):
 
-    queryset = SampleTaskBasic.objects.all()
+    queryset = CostcoSampleTasks.objects.all()
     serializer_class = TaskModelSerializer

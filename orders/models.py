@@ -17,19 +17,18 @@ class Orders(models.Model):
                                           max_length=100, blank=True)
     jp_style_number = models.CharField("Jeanne Pierre Style Number",
                                        max_length=20, blank=True)
+    jp_style_number_test = models.ManyToManyField('inventory.Inventory','+',
+                                                  verbose_name='Jp Style', blank=True)
     slug = models.SlugField(max_length=60, blank=True, unique=True)
     factory = models.ForeignKey("factory.Factory", "Factory", verbose_name='Factory', to_field='id', blank=True, max_length=100)
-    factory_ship_date = models.DateField(verbose_name='Ship to Factory Date', blank=True)
-    cost_from_factory = models.DecimalField(max_digits=max_dig, verbose_name="Factory Cost",
-                                            decimal_places=2, blank=True)
-    buyers_price = models.DecimalField(max_digits=max_dig, verbose_name='Price Buyer Paid', decimal_places=2,
-                                       blank=True)
+    factory_ship_date = models.DateField(verbose_name='Ship to Factory Date', blank=True, null=True)
+    cost_from_factory = models.FloatField(verbose_name="Factory Cost", blank=True)
+    buyers_price = models.FloatField(verbose_name='Price Buyer Paid', blank=True)
     order_type = models.CharField(choices=(('DDP', 'DDP'),
                                            ('FOB', 'FOB'),
                                            ('NA', 'NA')),
                                            null=True, verbose_name="Shipment Type", max_length=40)
-    qty = models.DecimalField(max_digits=max_dig, decimal_places=0, verbose_name='Order Qty',
-                              blank=True)
+    qty = models.FloatField(verbose_name='Order Qty', blank=True)
     sweater_image = models.ImageField('Item Image', blank=True, upload_to="sweater_images/")
     sweater_description = models.TextField(blank=True, verbose_name="Item Des.",
                                            max_length=200)

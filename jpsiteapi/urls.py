@@ -22,8 +22,9 @@ from django.views.static import serve
 from customer.views import CustomerCreateView, CustomerDetailView
 from orders.views import OrderCreateView, OrderDetailView, OrderCreateNamesView, OrderFileView
 from task.views import TaskCreateView, TaskDetailView
-from factory.views import FactoryCreateView, FactoryDetailView
+from factory.views import FactoryCreateView, FactoryDetailView, FactoryContacListtCreateView, FactoryContactDetailView
 from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token, verify_jwt_token
+from inventory.views import InventoryListCreateView, SpecListCreateView,InventoryDetailView, SpecDetailView, InventoryListView
 
 
 
@@ -60,6 +61,15 @@ urlpatterns = [
     path('factory/<int:pk>/',
          FactoryDetailView.as_view(),
          name='factory-detail'),
+    path('factory/contacts/',
+         FactoryContacListtCreateView.as_view(),
+         name='factory-contact-list'
+         ),
+    path('factory/contacts/<int:id>',
+         FactoryContactDetailView.as_view(),
+         name='factory-contact-list'
+         ),
+
 
     path('customer/',
          CustomerCreateView.as_view(),
@@ -89,6 +99,24 @@ urlpatterns = [
     path('task/<int:pk>/',
          TaskDetailView.as_view(),
          name='task-detail'),
+
+    path('inventory/',
+         InventoryListCreateView.as_view(),
+         name='inventory-create'),
+    path('inventorylist/',
+         InventoryListView.as_view(),
+         name='inventory-list'),
+    path('inventory/<int:pk>/',
+         InventoryDetailView.as_view(),
+         name='inventory-detail'),
+
+    path('inventory/specs/',
+         SpecListCreateView.as_view(),
+         name='spec-list'),
+    path('inventory/specs/<int:pk>/',
+         SpecDetailView.as_view(),
+         name='inventory-detail'),
+
 ]
 
 static(MEDIA_URL, document_root=MEDIA_ROOT)
