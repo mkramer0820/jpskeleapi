@@ -43,11 +43,11 @@ INSTALLED_APPS = [
     'home',
     'customer',
     'orders',
-    'task',
-    'inventory',
+    'todos',
     'rest_framework',
     'corsheaders',
-    'django_redis'
+    'django_redis',
+    'inventory',
 
 ]
 
@@ -97,8 +97,8 @@ DATABASES = {
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': os.environ.get('DB_NAME'),
-        'USER': 'mkramer',
+        'NAME': 'jpsite3',
+        'USER': 'mkram',
         'PASSWORD': '@C05m0dog!2@',
         'HOST': 'localhost',
         'PORT': '5432',

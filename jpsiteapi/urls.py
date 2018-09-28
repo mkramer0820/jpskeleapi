@@ -21,12 +21,11 @@ from django.views.static import serve
 
 from customer.views import CustomerCreateView, CustomerDetailView
 from orders.views import OrderCreateView, OrderDetailView, OrderCreateNamesView, OrderFileView
-from task.views import TaskCreateView, TaskDetailView
 from factory.views import FactoryCreateView, FactoryDetailView, FactoryContacListtCreateView, FactoryContactDetailView
 from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token, verify_jwt_token
 from inventory.views import InventoryListCreateView, SpecListCreateView,InventoryDetailView, SpecDetailView, InventoryListView
-
-
+from orders.views import OrdersTest
+from todos.views import TodoCreateView, TodoGroupCreateView,TodosRUD
 
 from .settings import MEDIA_URL, MEDIA_ROOT
 
@@ -55,6 +54,19 @@ urlpatterns = [
     url(r'^api-token-refresh/', refresh_jwt_token),
     url(r'^api-token-verify/', verify_jwt_token),
 
+
+    path('task/',
+         TodoCreateView.as_view(),
+         name='todos'
+         ),
+    path('task/<int:pk>/',
+         TodosRUD.as_view(),
+         name='todos-RUD'
+         ),
+    path('task/group/',
+         TodoGroupCreateView.as_view(),
+         name='todos-create'
+         ),
     path('factory/',
          FactoryCreateView.as_view(),
          name='factory-list'),
@@ -78,7 +90,9 @@ urlpatterns = [
          CustomerDetailView.as_view(),
          name='customer-detail'),
 
-
+    path('myorders/',
+         OrdersTest.as_view(),
+         name='orders-test'),
     path('orders/names/',
          OrderCreateNamesView.as_view(),
          name='order-names',),
@@ -91,15 +105,6 @@ urlpatterns = [
     path('orders/imgupload/',
          OrderFileView.as_view(),
          name='order-image'),
-
-
-    path('task/',
-         TaskCreateView.as_view(),
-         name='task-list'),
-    path('task/<int:pk>/',
-         TaskDetailView.as_view(),
-         name='task-detail'),
-
     path('inventory/',
          InventoryListCreateView.as_view(),
          name='inventory-create'),
@@ -154,6 +159,14 @@ def current_date(request):
     return HttpResponse(html)
     
 
-    
+
+
+    path('task/',
+         TaskCreateView.as_view(),
+         name='task-list'),
+    path('task/<int:pk>/',
+         TaskDetailView.as_view(),
+         name='task-detail'),
+
 """
 

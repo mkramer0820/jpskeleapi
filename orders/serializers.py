@@ -46,3 +46,12 @@ class OrderlistNameSerializer(serializers.ModelSerializer):
         depth = 2
 
 
+
+class OrdersSerializer(serializers.ModelSerializer):
+
+    order = OrderlistNameSerializer
+    orders2 = OrderlistSerializer
+
+    class Meta:
+        model = Orders
+        fields = '__all__'

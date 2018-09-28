@@ -14,7 +14,7 @@ class Customer(models.Model):
     address2 = models.CharField("Address2", "address2", max_length=64, blank=True, null=True)
     address3 = models.CharField("Address3", "address3", max_length=64, blank=True, null=True)
     country = models.CharField("country", "country", max_length=64, blank=True, null=True)
-    state = models.CharField("State-Province", "state-prov", max_length=64, blank=True, null=True)
+    state = models.CharField("State-Province", "state", max_length=64, blank=True, null=True)
     zip = models.CharField("Zip or Postal Code", max_length=10, blank=True, null=True)
     email = models.EmailField(blank=True, null=True)
     phone = models.CharField(max_length=20, blank=True, null=True)
